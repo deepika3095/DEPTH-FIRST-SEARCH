@@ -1,10 +1,10 @@
 # BREADTH-FIRST-SEARCH
-<h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h3>Name: Deepika R </h3>
-<h3>Register Number: 212223230038 </h3>
-<H3>Aim:</H3>
+<h1>Exp No 3 : Implement Breadth First Search Traversal of a Graph</h1> 
+<h3>Name : DEEPIKA R  </h3>
+<h3>Register Number : 212223230038</h3>
+<H3>Aim :</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
-<h3>Theory:</h3>
+<h3>Theory :</h3>
 <p>Breadth-First Traversal (or Search) for a graph is like the Breadth-First Traversal of a tree.
 The only catch here is that, unlike trees, graphs may contain cycles so that we may come to the same node again. To avoid processing a node more than once, we divide the vertices into two categories:
 <ol><li>Visited</li>
@@ -56,7 +56,7 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 
 
 <hr>
-<h2>Algorithm:</h2>
+<h3>Algorithm :</h3>
 <hr>
 <ol>
   <li>Construct a Graph with Nodes and Edges</li>
@@ -67,59 +67,6 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 <li>Iterate steps 4 and 5 until all nodes get visited, and there are no more unvisited nodes.</li>
 
 </ol>
-
-
-### PROGRAM
-```
-from collections import deque
-from collections import defaultdict
-
-
-'''
-V E
-FOR EVERY EDGE
-U V
-7 9
-A B
-A C 
-A F
-C E
-C F
-C D
-D E 
-D G
-G F
-'''
-def bfs(graph,start,visited,path):
-    queue = deque()
-    path.append(start)
-    queue.append(start)
-    visited[start] = True
-    while len(queue) != 0:
-        tmpnode = queue.popleft()
-        for neighbour in graph[tmpnode]:
-            if visited[neighbour] == False:
-                path.append(neighbour)
-                queue.append(neighbour)
-                visited[neighbour] = True
-    return path
-
-graph = defaultdict(list)
-v,e = map(int,input().split())
-for i in range(e):
-    u,v = map(str,input().split())
-    graph[u].append(v)
-    graph[v].append(u)
-
-if '0' in graph:
-    start = '0'
-else:
-    start = 'A'
-path = []
-visited = defaultdict(bool)
-traversedpath = bfs(graph,start,visited,path)
-print(traversedpath)
-```
 
 <hr>
 <h3>Sample Input</h3>
@@ -156,7 +103,42 @@ G F <BR>
 <hr>
 ['0', '1', '2', '3', '4']
 <hr>
-<h3>Result:</h3>
+
+### Program :
+```
+from collections import deque, defaultdict
+def bfs(graph, start, visited, path):
+    queue = deque()
+    path.append(start)
+    queue.append(start)
+    visited[start] = True
+    while queue:
+        tmpnode = queue.popleft()
+        for neighbour in graph[tmpnode]:
+            if not visited[neighbour]:
+                path.append(neighbour)
+                queue.append(neighbour)
+                visited[neighbour] = True
+    return path
+graph = defaultdict(list)
+v, e = map(int, input().split())
+for _ in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)
+start = list(graph.keys())[0]
+visited = defaultdict(bool)
+path = []
+traversedpath = bfs(graph, start, visited, path)
+print(traversedpath)
+```
+
+### Output :
+<img width="326" height="205" alt="image" src="https://github.com/user-attachments/assets/9dc98dd8-fcab-4f16-9f1e-2cc58371472a" />
+<br>
+<img width="274" height="150" alt="image" src="https://github.com/user-attachments/assets/3ef116b0-2639-4f73-89a5-0419fbd5ffb0" />
+
+<h3>Result :</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
 
